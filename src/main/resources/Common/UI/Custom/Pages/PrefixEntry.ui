@@ -1,0 +1,19 @@
+$S = "../Sounds.ui";
+
+@UseButtonStyle = TextButtonStyle(
+    Default: (Background: #3a7bd5, LabelStyle: (FontSize: 13, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+    Hovered: (Background: #4a8be5, LabelStyle: (FontSize: 13, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+    Pressed: (Background: #2a6bc5, LabelStyle: (FontSize: 13, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+    Sounds: $S.@ButtonsLight
+);
+
+Group {
+    LayoutMode: Center;
+    Anchor: (Width: 200, Height: 40);
+    Background: #000000(0);
+    TextButton #UseButton {
+        Anchor: (Width: 180, Height: 35);
+        Text: "PLACEHOLDER";
+        Style: @UseButtonStyle;
+    }
+}

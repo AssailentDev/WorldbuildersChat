@@ -1,0 +1,51 @@
+$C = "../Common.ui";
+
+Group {
+  Anchor: (Width: 700, Height: 600);
+  Background: #0f1829(0.8);
+  LayoutMode: Top;
+  Padding: (Full: 20);
+
+  Label {
+    Text: "Prefixes";
+    Style: (
+      FontSize: 18,
+      TextColor: #d8d8d8,
+      RenderBold: true,
+      RenderUppercase: true,
+      FontName: "Secondary"
+    );
+  }
+
+  Group {
+    LayoutMode: TopScrolling;
+
+    Group {
+      LayoutMode: Center;
+      Padding: (Full: 30);
+      Background: #000000(0);
+
+      Group {
+        LayoutMode: Left;
+        Background: #000000(0);
+        Group #Prefix1 {
+          LayoutMode: Top;
+          Anchor: (Width: 200);
+          Background: #000000(0);
+        }
+
+        Group #Prefix2 {
+          LayoutMode: Top;
+          Anchor: (Width: 200);
+          Background: #000000(0);
+        }
+
+        Group #Prefix3 {
+          LayoutMode: Top;
+          Anchor: (Width: 200);
+          Background: #000000(0);
+        }
+      }
+    }
+  }
+}

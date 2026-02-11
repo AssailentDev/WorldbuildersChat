@@ -1,0 +1,21 @@
+{
+  "Group": "me.assailent",
+  "Name": "WorldbuildersChat",
+  "Version": "0.0.1",
+  "Description": "Worldbuilding chat",
+  "Main": "me.assailent.WorldbuildersChat",
+  "Authors": [
+    {
+      "Name": "Assailent"
+    }
+  ],
+  "Website": "",
+  "Dependencies": {
+    "LuckPerms:LuckPerms": "*"
+  },
+  "OptionalDependencies": {},
+  "LoadBefore": {},
+  "DisabledByDefault": false,
+  "IncludesAssetPack": true,
+  "SubPlugins": []
+}

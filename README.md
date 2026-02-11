@@ -2,6 +2,9 @@
 ## A Hytale plugin by AssailentDev
 A worldbuilding chat plugin for hytale. Featuring distanced based chats, luckperms support and more!
 
+## Dependencies
+Luckperms Hytale: luckperms.net
+
 ## Features
 -- Note All of these features are *configurable*
 

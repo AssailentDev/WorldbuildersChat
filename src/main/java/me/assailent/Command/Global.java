@@ -1,5 +1,6 @@
 package me.assailent.Command;
 
+import me.assailent.Components.WorldbuildComponent;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.server.core.Message;
@@ -8,7 +9,6 @@ import com.hypixel.hytale.server.core.command.system.basecommands.AbstractPlayer
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
-import me.assailent.Components.WorldbuildComponent;
 import me.assailent.Utilities.Config;
 import me.assailent.WorldbuildersChat;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
@@ -30,12 +30,19 @@ public class Global extends AbstractPlayerCommand {
         Config config = plugin.getConfig();
         Map<String, String> map = new HashMap<>();
         map.put("%player", playerRef.getUsername());
-        playerRef.sendMessage(Message.parse(config.format(config.getJoinGlobal(), map)));
 
         world.execute(() -> {
             WorldbuildComponent worldbuildComponent = store.getComponent(playerRef.getReference(), plugin.getWorldbuildComponent());
-            if (worldbuildComponent.getChannel().equals("Global")) { return; }
+            if (worldbuildComponent.getChannel().equals("Global")) {
+                playerRef.sendMessage(Message.raw(config.format(config.getAlreadyInGlobal(), map)));
+                return;
+            }
+            if (worldbuildComponent.getGlobalMute()) {
+                worldbuildComponent.globalMute = false;
+            }
+
             worldbuildComponent.channel = "Global";
+            playerRef.sendMessage(Message.raw(config.format(config.getJoinGlobal(), map)));
         });
     }
 }

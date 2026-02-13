@@ -46,6 +46,10 @@ Luckperms Hytale: luckperms.net
   "LocalChatFormat": "[%distance] [%prefix] %player %suffix | %content",
   "ShoutFormat": "[%distance] [%prefix] %player %suffix | %content",
   "WhisperFormat": "[%distance] [%prefix] %player %suffix | %content",
+  "AlreadyInGlobal": "%player You're already in the global channel!",
+  "AlreadyInLocal": "%player You're already in the local channel!",
+  "MuteGlobal": "You muted global chat",
+  "UnMuteGlobal": "%player You unmuted global chat",
   "JoinGlobal": "%player You joined global!",
   "JoinLocal": "%player You joined local!",
   "StartShouting": "%player You are now shouting!",
@@ -98,10 +102,10 @@ Luckperms Hytale: luckperms.net
   ],
   "AstrixWords": [
     "crud",
-    "ass"
+    "CussWord!"
   ],
   "BlacklistWords": [
-    "ez",
+    "SwearWord!",
     ".com",
     ".org",
     "www.",
@@ -112,7 +116,7 @@ Luckperms Hytale: luckperms.net
   "Prefixes": [
     "Knight",
     "Runner",
-    "Blacksmith",
+    "More",
     "Miner"
   ]
 }

@@ -1,10 +1,12 @@
 package me.assailent.Events;
 
+import me.assailent.Components.WorldbuildComponent;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.math.vector.Vector3d;
 //import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.Message;
+import com.hypixel.hytale.server.core.event.events.player.AddPlayerToWorldEvent;
 import com.hypixel.hytale.server.core.event.events.player.PlayerChatEvent;
 import com.hypixel.hytale.server.core.event.events.player.PlayerDisconnectEvent;
 import com.hypixel.hytale.server.core.event.events.player.PlayerReadyEvent;
@@ -12,7 +14,6 @@ import com.hypixel.hytale.server.core.modules.entity.component.TransformComponen
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.Universe;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
-import me.assailent.Components.WorldbuildComponent;
 import me.assailent.Utilities.Config;
 import me.assailent.WorldbuildersChat;
 
@@ -38,6 +39,10 @@ public class ChatEvents {
             WorldbuildComponent worldbuildComp =  new WorldbuildComponent();
             worldbuildComp.channel = "Global";
         }
+    }
+
+    public void onAddPlayerToWorld(AddPlayerToWorldEvent event) {
+        event.setBroadcastJoinMessage(false);
     }
 
     public void onPlayerReady(PlayerReadyEvent event) {

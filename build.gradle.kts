@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "me.assailent"
-version = "1.0.0"
+version = "1.0.1"
 
 repositories {
     mavenCentral()
@@ -32,8 +32,6 @@ tasks.jar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
     from("src/main/resources")
-
-
 }
 
 tasks.test {

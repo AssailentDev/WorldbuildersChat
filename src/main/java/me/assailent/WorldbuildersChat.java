@@ -1,22 +1,20 @@
 package me.assailent;
 
+import me.assailent.Command.*;
+import me.assailent.Utilities.Config;
+import me.assailent.Utilities.Logging;
 import com.hypixel.hytale.component.ComponentType;
 import com.hypixel.hytale.logger.HytaleLogger;
+import com.hypixel.hytale.server.core.event.events.player.AddPlayerToWorldEvent;
 import com.hypixel.hytale.server.core.event.events.player.PlayerChatEvent;
 import com.hypixel.hytale.server.core.event.events.player.PlayerDisconnectEvent;
 import com.hypixel.hytale.server.core.event.events.player.PlayerReadyEvent;
-import com.hypixel.hytale.server.core.io.ServerManager;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
-import com.hypixel.hytale.server.core.plugin.PluginType;
-import com.hypixel.hytale.server.core.universe.Universe;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
-import me.assailent.Command.*;
 import me.assailent.Components.WorldbuildComponent;
 import me.assailent.Events.ChatEvents;
 import me.assailent.Events.LuckPermEvents;
-import me.assailent.Utilities.Config;
-import me.assailent.Utilities.Logging;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
@@ -63,6 +61,7 @@ public class WorldbuildersChat extends JavaPlugin {
         }
 
         // Events Register
+        this.getEventRegistry().registerGlobal(AddPlayerToWorldEvent.class, chatEvents::onAddPlayerToWorld);
         this.getEventRegistry().registerGlobal(PlayerReadyEvent.class, chatEvents::onPlayerReady);
         this.getEventRegistry().registerGlobal(PlayerDisconnectEvent.class, chatEvents::onPlayerDisconnected);
         this.getEventRegistry().registerGlobal(PlayerChatEvent.class, chatEvents::onPlayerChatEvent);

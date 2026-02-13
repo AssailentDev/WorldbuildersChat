@@ -1,15 +1,12 @@
-package me.assailent.UI.Pages;
+package me.assailent.Pages;
 
+import me.assailent.Components.WorldbuildComponent;
 import com.hypixel.hytale.codec.KeyedCodec;
 import com.hypixel.hytale.codec.builder.BuilderCodec;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.protocol.packets.interface_.CustomPageLifetime;
 import com.hypixel.hytale.protocol.packets.interface_.CustomUIEventBindingType;
-import com.hypixel.hytale.server.core.Message;
-import com.hypixel.hytale.server.core.entity.Entity;
-import com.hypixel.hytale.server.core.entity.entities.Player;
-import com.hypixel.hytale.server.core.entity.entities.player.pages.BasicCustomUIPage;
 import com.hypixel.hytale.server.core.entity.entities.player.pages.InteractiveCustomUIPage;
 import com.hypixel.hytale.server.core.permissions.PermissionsModule;
 import com.hypixel.hytale.server.core.ui.builder.EventData;
@@ -17,7 +14,6 @@ import com.hypixel.hytale.server.core.ui.builder.UICommandBuilder;
 import com.hypixel.hytale.server.core.ui.builder.UIEventBuilder;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
-import me.assailent.Components.WorldbuildComponent;
 import me.assailent.Utilities.Config;
 import me.assailent.WorldbuildersChat;
 import net.luckperms.api.LuckPerms;
@@ -29,7 +25,6 @@ import net.luckperms.api.node.types.PrefixNode;
 import net.luckperms.api.platform.PlayerAdapter;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class PrefixesPage extends InteractiveCustomUIPage<PrefixesPage.PrefixNameData> {
@@ -58,7 +53,7 @@ public class PrefixesPage extends InteractiveCustomUIPage<PrefixesPage.PrefixNam
 
         ArrayList<String> prefixes = new ArrayList<>();
         for (String prefix : config.getPrefixes()) {
-            boolean canUse = PermissionsModule.get().hasPermission(playerRef.getUuid(), "me.assailent.worldbuilderschat.prefix." + prefix);
+            boolean canUse = PermissionsModule.get().hasPermission(playerRef.getUuid(), "WorldbuildersChat.worldbuilderschat.prefix." + prefix);
             if (!canUse) continue;
 
             prefixes.add(prefix);

@@ -40,6 +40,19 @@ public class Config {
                     (config, value) -> config.whisperRangeFormat = value,
                     (config) -> config.whisperRangeFormat).add()
 
+            .append(new KeyedCodec<>("AlreadyInGlobal", Codec.STRING),
+                    (config, value) -> config.alreadyInGlobal = value,
+                    (config) -> config.alreadyInGlobal).add()
+            .append(new KeyedCodec<>("AlreadyInLocal", Codec.STRING),
+                    (config, value) -> config.alreadyInLocal = value,
+                    (config) -> config.alreadyInLocal).add()
+
+            .append(new KeyedCodec<>("MuteGlobal", Codec.STRING),
+                    (config, value) -> config.muteGlobal = value,
+                    (config) -> config.muteGlobal).add()
+            .append(new KeyedCodec<>("UnMuteGlobal", Codec.STRING),
+                    (config, value) -> config.unMuteGlobal = value,
+                    (config) -> config.unMuteGlobal).add()
             .append(new KeyedCodec<>("JoinGlobal", Codec.STRING),
                     (config, value) -> config.joinGlobal = value,
                     (config) -> config.joinGlobal).add()
@@ -97,6 +110,11 @@ public class Config {
     private String shoutRangeFormat = "[%distance] [%prefix] %player %suffix | %content";
     private String whisperRangeFormat = "[%distance] [%prefix] %player %suffix | %content";
 
+    private String alreadyInGlobal = "%player You're already in the global channel!";
+    private String alreadyInLocal = "%player You're already in the local channel!";
+
+    private String muteGlobal = "%player You muted global chat";
+    private String unMuteGlobal = "%player You unmuted global chat";
     private String joinGlobal = "%player You joined global!"; // %player for player
     private String joinLocal = "%player You joined local!";
     private String startShouting = "%player You are now shouting!"; // %player for player
@@ -158,6 +176,15 @@ public class Config {
         return whisperRangeFormat;
     }
 
+
+    public String getAlreadyInGlobal() { return alreadyInGlobal; }
+
+    public String getAlreadyInLocal() { return alreadyInLocal; }
+
+
+    public String getMuteGlobal() { return muteGlobal; }
+
+    public String getUnMuteGlobal() { return unMuteGlobal; }
 
     public String getJoinGlobal() { return joinGlobal; }
 

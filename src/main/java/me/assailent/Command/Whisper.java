@@ -1,5 +1,6 @@
 package me.assailent.Command;
 
+import me.assailent.Components.WorldbuildComponent;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.server.core.Message;
@@ -8,7 +9,6 @@ import com.hypixel.hytale.server.core.command.system.basecommands.AbstractPlayer
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
-import me.assailent.Components.WorldbuildComponent;
 import me.assailent.Utilities.Config;
 import me.assailent.WorldbuildersChat;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;

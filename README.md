@@ -1,9 +1,13 @@
 # WorldbuildersChat
 ## A Hytale plugin by AssailentDev
-A worldbuilding chat plugin for hytale. Featuring distanced based chats, luckperms support and more!
+A worldbuilding chat plugin for Hytale. Featuring distanced based chats, luckperms support and more!
 
 ## Dependencies
-Luckperms Hytale: luckperms.net
+### Hard Dependencies
+N/A
+### Soft Dependencies
+* **Luckperms Hytale** luckperms.net
+* **TinyMsg** github.com/Zoltus/TinyMessage
 
 ## Features
 -- Note All of these features are *configurable*
@@ -117,10 +121,9 @@ Luckperms Hytale: luckperms.net
     "Knight",
     "Runner",
     "More",
-    "Miner"
+    "<color:blue>Miner<reset>"
   ]
 }
 ```
 
-P.S. This plugin does not yet support any coloured messaging, this was planned to be added however due to some problems with Zoltus' TinyMsg library I've put this feature on hold!
-If you have any feature requests please let me know either here or on my discord (@mini_assailent).
+P.S. If you have any feature requests please let me know either here or on my discord (@mini_assailent).

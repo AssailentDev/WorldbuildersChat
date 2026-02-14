@@ -6,15 +6,17 @@ plugins {
 }
 
 group = "me.assailent"
-version = "1.0.1"
+version = "1.0.2"
 
 repositories {
     mavenCentral()
+    maven("https://jitpack.io")
 }
 
 dependencies {
     compileOnly(files("/libs/HytaleServer.jar"))
     compileOnly("net.luckperms:api:5.5")
+    compileOnly("com.github.Zoltus:TinyMessage:2.0.1")
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")

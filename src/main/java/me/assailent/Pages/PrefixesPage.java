@@ -15,6 +15,7 @@ import com.hypixel.hytale.server.core.ui.builder.UIEventBuilder;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import me.assailent.Utilities.Config;
+import me.assailent.Utilities.Formatting;
 import me.assailent.WorldbuildersChat;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
@@ -73,8 +74,11 @@ public class PrefixesPage extends InteractiveCustomUIPage<PrefixesPage.PrefixNam
 
             String selector = group + "[" + x + "]";
 
+            Formatting formatting = new Formatting();
+            String cleanPrefix = formatting.removeTinyMsg(prefix);
+
             uiCommandBuilder.append(group, "Pages/PrefixEntry.ui");
-            uiCommandBuilder.set(selector + " #UseButton" + ".Text", prefix);
+            uiCommandBuilder.set(selector + " #UseButton" + ".Text", cleanPrefix);
 
 
             uiEventBuilder.addEventBinding(CustomUIEventBindingType.Activating,

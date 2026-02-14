@@ -10,6 +10,7 @@ import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import me.assailent.Utilities.Config;
+import me.assailent.Utilities.Formatting;
 import me.assailent.WorldbuildersChat;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
@@ -29,6 +30,8 @@ public class GlobalMute extends AbstractPlayerCommand {
     @Override
     protected void execute(@NonNullDecl CommandContext commandContext, @NonNullDecl Store<EntityStore> store, @NonNullDecl Ref<EntityStore> ref, @NonNullDecl PlayerRef playerRef, @NonNullDecl World world) {
         Config config = plugin.getConfig();
+        Formatting formatting = new Formatting();
+
         Map<String, String> map = new HashMap<>();
         map.put("%player", playerRef.getUsername());
 
@@ -36,11 +39,11 @@ public class GlobalMute extends AbstractPlayerCommand {
            WorldbuildComponent worldbuildComponent = store.getComponent(playerRef.getReference(), plugin.getWorldbuildComponent());
            worldbuildComponent.globalMute = !worldbuildComponent.getGlobalMute();
            if (worldbuildComponent.globalMute) {
-               playerRef.sendMessage(Message.raw(config.format(config.getMuteGlobal(), map)));
+               playerRef.sendMessage(formatting.message(formatting.format(config.getMuteGlobal(), map)));
                if (worldbuildComponent.getChannel().equals("Local")) { return; }
                worldbuildComponent.channel = "Local";
            } else {
-               playerRef.sendMessage(Message.raw(config.format(config.getUnMuteGlobal(), map)));
+               playerRef.sendMessage(formatting.message(formatting.format(config.getUnMuteGlobal(), map)));
            }
         });
     }

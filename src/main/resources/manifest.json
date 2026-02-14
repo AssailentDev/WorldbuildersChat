@@ -1,7 +1,7 @@
 {
   "Group": "me.assailent",
   "Name": "WorldbuildersChat",
-  "Version": "1.0.1",
+  "Version": "1.0.2",
   "Description": "Worldbuilding chat",
   "Main": "me.assailent.WorldbuildersChat",
   "Authors": [
@@ -11,9 +11,12 @@
   ],
   "Website": "",
   "Dependencies": {
+
+  },
+  "OptionalDependencies": {
+    "Zoltus:TinyMessage": "*",
     "LuckPerms:LuckPerms": "*"
   },
-  "OptionalDependencies": {},
   "LoadBefore": {},
   "DisabledByDefault": false,
   "IncludesAssetPack": true,

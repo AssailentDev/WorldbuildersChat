@@ -15,6 +15,7 @@ import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.Universe;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import me.assailent.Utilities.Config;
+import me.assailent.Utilities.Formatting;
 import me.assailent.WorldbuildersChat;
 
 import javax.annotation.Nonnull;
@@ -52,6 +53,8 @@ public class ChatEvents {
         Config config = plugin.getConfig();
         if (!config.getClientJoinMessageEnabled() && !config.getServerJoinMessageEnabled()) return;
 
+        Formatting formatting = new Formatting();
+
         Store<EntityStore> store = event.getPlayerRef().getStore();
         PlayerRef playerRef = store.getComponent(event.getPlayerRef(), PlayerRef.getComponentType());
         if (playerRef == null) return;
@@ -60,8 +63,8 @@ public class ChatEvents {
         map.put("%player", playerRef.getUsername());
 
         if (config.getClientJoinMessageEnabled()) {
-            playerRef.sendMessage(Message.raw(
-                    format(config.getClientJoinMessage(), map)
+            playerRef.sendMessage(formatting.message(
+                    formatting.format(config.getClientJoinMessage(), map)
             ));
         }
 
@@ -69,8 +72,8 @@ public class ChatEvents {
             for (PlayerRef ref : Universe.get().getPlayers()) {
                 if (ref.getUuid() == playerRef.getUuid()) continue;
 
-                ref.sendMessage(Message.raw(
-                        format(config.getServerJoinMessage(), map)
+                ref.sendMessage(formatting.message(
+                        formatting.format(config.getServerJoinMessage(), map)
                 ));
             }
         }
@@ -81,6 +84,8 @@ public class ChatEvents {
         Config config = plugin.getConfig();
         if (!config.getServerDisconnectedMessageEnabled()) return;
 
+        Formatting formatting = new Formatting();
+
         PlayerRef playerRef = event.getPlayerRef();
 
         Map<String, String> map = new HashMap<>();
@@ -89,15 +94,19 @@ public class ChatEvents {
         for (PlayerRef ref : Universe.get().getPlayers()) {
             if (ref.getUuid() == playerRef.getUuid()) continue;
 
-            ref.sendMessage(Message.raw(
-                    format(config.getServerDisconnectedMessage(), map)
+            ref.sendMessage(formatting.message(
+                    formatting.format(config.getServerDisconnectedMessage(), map)
             ));
         }
     }
 
     public void onPlayerChatEvent(PlayerChatEvent event) {
         // Player Chat Event
+//        event.setCancelled(true);
+
         Config config = plugin.getConfig();
+
+        Formatting formatting = new Formatting();
 
         Store<EntityStore> store = event.getSender().getReference().getStore();
         PlayerRef playerRef = event.getSender();
@@ -116,14 +125,13 @@ public class ChatEvents {
             map.put("%suffix", worldbuildComponent.getSuffix());
 
             if (worldbuildComponent.getChannel().equals("Global")) {
-                plugin.getLogging().log("Global", playerRef.getUsername(),  format(config.getGlobalChatFormat(), map));
                 for (PlayerRef playerRef1 : Universe.get().getPlayers()) {
                     Store<EntityStore> store1 = playerRef1.getReference().getStore();
                     WorldbuildComponent worldbuildComponent1 = store1.ensureAndGetComponent(playerRef1.getReference(), plugin.getWorldbuildComponent());
                     if (worldbuildComponent1.getGlobalMute()) continue;
 
-                    playerRef1.sendMessage(Message.raw(
-                            format(config.getGlobalChatFormat(), map)
+                    playerRef1.sendMessage(formatting.message(
+                            formatting.format(config.getGlobalChatFormat(), map)
                     ));
                 }
             } else if (worldbuildComponent.getChannel().equals("Local")) {
@@ -153,11 +161,9 @@ public class ChatEvents {
 
                 Vector3d senderPos = senderTransform.getPosition();
 
-                plugin.getLogging().log("Local", playerRef.getUsername(),  format(config.getGlobalChatFormat(), map));
-
                 for (PlayerRef playerRef1 : Universe.get().getPlayers()) {
                     if (playerRef1.getUuid() == playerRef.getUuid()) {
-                        playerRef.sendMessage(Message.raw(format(config.getGlobalChatFormat(), map)));
+                        playerRef.sendMessage(formatting.message(formatting.format(config.getGlobalChatFormat(), map)));
                         continue;
                     }
 
@@ -175,8 +181,8 @@ public class ChatEvents {
 
                     map.put("%distance", String.valueOf(Math.round(Math.sqrt(distance))));
 
-                    playerRef1.sendMessage(Message.raw(
-                            format(formatstring, map)
+                    playerRef1.sendMessage(formatting.message(
+                            formatting.format(formatstring, map)
                     ));
                 }
             }
@@ -192,28 +198,14 @@ public class ChatEvents {
                 Random rand = new Random();
                 int index = rand.nextInt(replaceSentence.length);
                 returnMessage = replaceSentence[index];
-                plugin.getLogging().log("Swear", username, message);
                 return returnMessage;
             }
         }
         for (String word : config.getAstrixWords()) {
             if (message.contains(word)) {
-                plugin.getLogging().log("Swear", username, message);
                 returnMessage = returnMessage.replace(word, "*%!#");
             }
         }
         return returnMessage;
-    }
-
-    public String format(String message, Map<String, String> args) {
-        String newstring = message;
-        for (Map.Entry<String, String> entry : args.entrySet()) {
-            if (entry.getValue() == null) {
-                newstring = newstring.replace(entry.getKey(), "");
-            } else {
-                newstring = newstring.replace(entry.getKey(), entry.getValue());
-            }
-        }
-        return newstring;
     }
 }

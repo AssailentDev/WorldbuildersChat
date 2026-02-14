@@ -10,6 +10,7 @@ import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import me.assailent.Utilities.Config;
+import me.assailent.Utilities.Formatting;
 import me.assailent.WorldbuildersChat;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
@@ -31,10 +32,12 @@ public class Global extends AbstractPlayerCommand {
         Map<String, String> map = new HashMap<>();
         map.put("%player", playerRef.getUsername());
 
+        Formatting formatting = new Formatting();
+
         world.execute(() -> {
             WorldbuildComponent worldbuildComponent = store.getComponent(playerRef.getReference(), plugin.getWorldbuildComponent());
             if (worldbuildComponent.getChannel().equals("Global")) {
-                playerRef.sendMessage(Message.raw(config.format(config.getAlreadyInGlobal(), map)));
+                playerRef.sendMessage(formatting.message(formatting.format(config.getAlreadyInGlobal(), map)));
                 return;
             }
             if (worldbuildComponent.getGlobalMute()) {
@@ -42,7 +45,7 @@ public class Global extends AbstractPlayerCommand {
             }
 
             worldbuildComponent.channel = "Global";
-            playerRef.sendMessage(Message.raw(config.format(config.getJoinGlobal(), map)));
+            playerRef.sendMessage(formatting.message((formatting.format(config.getJoinGlobal(), map))));
         });
     }
 }

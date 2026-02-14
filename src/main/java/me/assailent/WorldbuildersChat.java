@@ -1,5 +1,6 @@
 package me.assailent;
 
+import com.hypixel.hytale.server.core.io.ServerManager;
 import me.assailent.Command.*;
 import me.assailent.Utilities.Config;
 import me.assailent.Utilities.Logging;
@@ -78,8 +79,12 @@ public class WorldbuildersChat extends JavaPlugin {
     protected void start() {
         super.start();
 
-        luckPerms = LuckPermsProvider.get();
-        LuckPermEvents luckPermEvents = new LuckPermEvents(this, luckPerms);
+        try {
+            luckPerms = LuckPermsProvider.get();
+            LuckPermEvents luckPermEvents = new LuckPermEvents(this, luckPerms);
+        } catch (Exception e) {
+            // No exception!
+        }
     }
 
     public ComponentType<EntityStore, WorldbuildComponent> getWorldbuildComponent() { return this.worldbuildComponent; }

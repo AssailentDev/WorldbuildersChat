@@ -222,13 +222,4 @@ public class Config {
     public Boolean getPrefixesEnabled() { return prefixesEnabled; }
 
     public String[] getPrefixes() { return prefixes; }
-
-
-    public String format(String message, Map<String, String> args) {
-        String newstring = message;
-        for (Map.Entry<String, String> entry : args.entrySet()) {
-            newstring = newstring.replace(entry.getKey(), entry.getValue());
-        }
-        return newstring;
-    }
 }

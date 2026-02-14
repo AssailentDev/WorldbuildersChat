@@ -10,6 +10,7 @@ import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import me.assailent.Utilities.Config;
+import me.assailent.Utilities.Formatting;
 import me.assailent.WorldbuildersChat;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
@@ -28,9 +29,11 @@ public class Shout extends AbstractPlayerCommand {
     @Override
     protected void execute(@NonNullDecl CommandContext commandContext, @NonNullDecl Store<EntityStore> store, @NonNullDecl Ref<EntityStore> ref, @NonNullDecl PlayerRef playerRef, @NonNullDecl World world) {
         Config config = plugin.getConfig();
+        Formatting formatting = new Formatting();
+
         Map<String, String> map = new HashMap<>();
         map.put("%player", playerRef.getUsername());
-        playerRef.sendMessage(Message.raw(config.format(config.getStartShouting(), map)));
+        playerRef.sendMessage(formatting.message(formatting.format(config.getStartShouting(), map)));
 
         world.execute(() -> {
            WorldbuildComponent worldbuildComponent = store.ensureAndGetComponent(playerRef.getReference(), plugin.getWorldbuildComponent());
